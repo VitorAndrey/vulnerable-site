@@ -4,9 +4,9 @@ import React, { FormEvent, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { User } from "@/context/UserContext";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { userRegister } from "@/services/authentication";
 
 export default function Register() {
   const [nameInputValue, setNameInputValue] = useState<string>("");
@@ -15,25 +15,15 @@ export default function Register() {
 
   const navigation = useRouter();
 
-  function userRegister(user: User) {
-    if (user.email === "teste@gmail.com" && user.password === "123") {
-      return {
-        name: "teste",
-        email: "teste@gmail.com",
-        password: "123",
-      };
-    } else {
-      return null;
-    }
-  }
-
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    const user = await userRegister({
+    const response = await userRegister({
       name: nameInputValue,
       email: emailInputValue,
       password: passwordInputValue,
     });
+
+    console.log(response);
 
     navigation.push("/login");
   }
@@ -46,7 +36,7 @@ export default function Register() {
     <main className="flex items-center justify-center h-screen bg-zinc-50">
       <form
         onSubmit={handleSubmit}
-        className="shadow-lg flex flex-col p-8 rounded-2xl gap-4 bg-white"
+        className="shadow-lg flex flex-col p-8 rounded-2xl gap-4 bg-white w-[95%] max-w-xs"
       >
         <Input
           required

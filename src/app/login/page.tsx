@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User, UserContext } from "@/context/UserContext";
+import { userLogin } from "@/services/authentication";
 import { useRouter } from "next/navigation";
 import { FormEvent, useContext, useState } from "react";
 
@@ -13,18 +14,6 @@ export default function Login() {
   const navigation = useRouter();
 
   const { handleUserLogged } = useContext(UserContext);
-
-  function userLogin(user: Omit<User, "name">) {
-    if (user.email === "teste@gmail.com" && user.password === "123") {
-      return {
-        name: "teste",
-        email: "teste@gmail.com",
-        password: "123",
-      };
-    } else {
-      return null;
-    }
-  }
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -50,7 +39,7 @@ export default function Login() {
     <main className="flex items-center justify-center h-screen bg-zinc-50">
       <form
         onSubmit={handleSubmit}
-        className="shadow-lg flex flex-col p-8 rounded-2xl gap-4 bg-white"
+        className="shadow-lg flex flex-col p-8 rounded-2xl gap-4 bg-white w-[95%] max-w-xs"
       >
         <Input
           required

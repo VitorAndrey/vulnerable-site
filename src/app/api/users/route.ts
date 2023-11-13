@@ -3,14 +3,14 @@ import { database } from "@/lib/pg";
 
 export async function GET(request: Request) {
   try {
-    await database.connect();
+    const client = await database.connect(); // Get a client from the pool
 
-    const response = (await database.query(`select * from public.users`)).rows;
+    const response = (await client.query(`select * from public.users`)).rows;
+
+    client.release(); // Release the client back to the pool
 
     return NextResponse.json({ users: response });
   } catch (error) {
     console.log(error);
-  } finally {
-    await database.end();
   }
 }
