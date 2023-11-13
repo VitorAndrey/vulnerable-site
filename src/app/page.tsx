@@ -51,15 +51,15 @@ export default function Home() {
 
         <Button type="submit">Buscar</Button> */}
 
-        <Button variant="ghost">
-          {data &&
-            // @ts-ignore
-            data.products.map((product) => (
-              <p key={product.id}>
+        {data &&
+          // @ts-ignore
+          data.products.map((product) => (
+            <Button key={product.id} variant="ghost">
+              <p>
                 {product.name} - R${product.basePrice}
               </p>
-            ))}
-        </Button>
+            </Button>
+          ))}
       </form>
     </main>
   );
