@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { UserContext, UserContextProvider } from "@/context/UserContex";
-
+import { UserContextProvider } from "@/context/UserContext";
 const inter = Inter({ subsets: ["latin"] });
-
-import { useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
 
 export const metadata: Metadata = {
   title: "Vulnerable App",
@@ -19,15 +15,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { userInfo } = useContext(UserContext);
-  const navigation = useRouter();
-
-  useEffect(() => {
-    if (!userInfo) {
-      navigation.push("/login");
-    }
-  }, [userInfo]);
-
   return (
     <html lang="pt-br">
       <body className={inter.className}>
