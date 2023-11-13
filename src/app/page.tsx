@@ -39,7 +39,7 @@ export default function Home() {
     <main className="flex p-2 justify-center h-screen bg-zinc-50">
       <form
         onSubmit={handleSubmit}
-        className="shadow-lg flex flex-col p-8 rounded-2xl gap-4 bg-white w-[95%] max-w-xs"
+        className="shadow-lg flex flex-col p-8 rounded-2xl gap-4 bg-white w-[95%] max-w-xs overflow-y-auto"
       >
         {/* <Input
           required
