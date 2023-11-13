@@ -48,7 +48,7 @@ export default function Register() {
 
         <Input
           required
-          type="email"
+          type="text"
           placeholder="E-mail:"
           value={emailInputValue}
           onChange={(event) => setEmailInputValue(event.target.value)}

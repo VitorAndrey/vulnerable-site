@@ -24,6 +24,7 @@ export default function Home() {
 
   async function handleFetchProducts() {
     const data = await fetchProducts();
+    console.log(data);
     setData(data);
   }
 
@@ -52,6 +53,7 @@ export default function Home() {
 
         <Button variant="ghost">
           {data &&
+            // @ts-ignore
             data.products.map((product) => (
               <p key={product.id}>
                 {product.name} - R${product.basePrice}
