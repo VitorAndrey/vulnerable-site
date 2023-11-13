@@ -5,7 +5,7 @@ import { User } from "@/context/UserContext";
 export async function userLogin(user: Omit<User, "name">) {
   console.log(user);
 
-  const url = "http://localhost:3000/api/login";
+  const url = "https://vulnerable-site.vercel.app/api/login";
 
   const response = await axios.post(url, user);
 
@@ -19,7 +19,7 @@ export async function userLogin(user: Omit<User, "name">) {
 export async function userRegister(user: User) {
   console.log(user);
 
-  const url = "http://localhost:3000/api/register";
+  const url = "https://vulnerable-site.vercel.app/api/register";
 
   const response = await axios.post(url, user);
 
