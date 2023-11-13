@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { User, UserContext } from "@/context/UserContext";
+import { UserContext } from "@/context/UserContext";
 import { userLogin } from "@/services/authentication";
 import { useRouter } from "next/navigation";
 import { FormEvent, useContext, useState } from "react";
@@ -27,7 +27,7 @@ export default function Login() {
 
       navigation.push("/");
     } else {
-      window.alert("Usuário não cadastrado.");
+      console.log("ERRROROR");
     }
   }
 
@@ -48,6 +48,7 @@ export default function Login() {
           value={emailInputValue}
           onChange={(event) => setEmailInputValue(event.target.value)}
         />
+
         <Input
           required
           type="password"

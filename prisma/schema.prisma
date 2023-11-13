@@ -7,18 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model products {
+model Products {
   id                 String @id @default(uuid())
   name               String
   basePrice          Float
   imageUrl           String
   discountPercentage Int?
   cashBackPercentage Int?
+
+  @@map("products")
 }
 
-model users {
+model Users {
   id       String @id @default(uuid())
   name     String
   email    String @unique
   password String
+
+  @@map("users")
+}
+
+model Transactions {
+  id     String @id @default(uuid())
+  from   String
+  to     String
+  amount Float
+
+  @@map("transactions")
 }

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { database } from "@/lib/pg";
+import { z } from "zod";
+import prisma from "@/lib/prisma";
 
 export async function GET(request: Request) {
   try {
@@ -13,4 +15,22 @@ export async function GET(request: Request) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function POST(request: Request) {
+  const bodySchema = z.object({
+    name: z.string(),
+    basePrice: z.number(),
+    imageUrl: z.string(),
+  });
+
+  const body = await request.json();
+
+  const product = bodySchema.parse(body);
+
+  await prisma.products.create({
+    data: product,
+  });
+
+  return NextResponse.json({ status: 201 });
 }
