@@ -40,7 +40,7 @@ export default function Home() {
         onSubmit={handleSubmit}
         className="shadow-lg flex flex-col p-8 rounded-2xl gap-4 bg-white w-[95%] max-w-xs"
       >
-        <Input
+        {/* <Input
           required
           type="text"
           placeholder="Produto"
@@ -48,12 +48,16 @@ export default function Home() {
           onChange={(event) => setProductInput(event.target.value)}
         />
 
-        <Button type="submit">Buscar</Button>
+        <Button type="submit">Buscar</Button> */}
 
-        {data &&
-          data.products.map((product) => (
-            <p key={product.id}>{product.name}</p>
-          ))}
+        <Button variant="ghost">
+          {data &&
+            data.products.map((product) => (
+              <p key={product.id}>
+                {product.name} - R${product.basePrice}
+              </p>
+            ))}
+        </Button>
       </form>
     </main>
   );

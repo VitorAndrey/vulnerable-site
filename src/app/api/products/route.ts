@@ -26,10 +26,14 @@ export async function POST(request: Request) {
 
   const body = await request.json();
 
-  const product = bodySchema.parse(body);
+  const { basePrice, imageUrl, name } = bodySchema.parse(body);
 
   await prisma.products.create({
-    data: product,
+    data: {
+      basePrice: Number(basePrice),
+      imageUrl,
+      name,
+    },
   });
 
   return NextResponse.json({ status: 201 });
